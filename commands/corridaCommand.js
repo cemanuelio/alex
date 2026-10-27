@@ -8,15 +8,13 @@ class CorridaCommand {
       { name: 'value', alias: 'v', type: Number },
     ];
 
-    this.trackSize = 50;
+    this.trackSize = 25;
+    this.tickInterval = 1000;
+    this.maxStep = 3;
   }
 
-  getNextHorseToWalk(length) {
-    let horseToWalk;
-    do {
-      horseToWalk = Math.round(Math.random() * length);
-    } while(horseToWalk > length - 1);
-    return horseToWalk;
+  getStep() {
+    return Math.floor(Math.random() * this.maxStep);
   }
 
   async race(event, usersIn, betValue) {
@@ -26,30 +24,44 @@ class CorridaCommand {
     let message;
 
     const run = async () => {
-      const bays = race.map(
-        (it, index) => `${index + 1}| ${Array.from(Array(this.trackSize), (_, i) => i === it ? '🏇' : '-').join('')}🏆`
-      );
+      const steps = race.map(() => this.getStep());
+      if (steps.every(step => step === 0)) {
+        steps[Math.floor(Math.random() * steps.length)] = 1 + Math.floor(Math.random() * (this.maxStep - 1));
+      }
+
+      race.forEach((position, index) => {
+        race[index] = position + steps[index];
+      });
+
+      const bays = race.map((it, index) => {
+        const pos = this.trackSize - 1 - Math.min(it, this.trackSize - 1);
+        return `${index + 1}| 🏆${Array.from(Array(this.trackSize), (_, i) => i === pos ? '🏇' : '-').join('')}`;
+      });
 
       const messageBody = `\`\`\`${bays.join('\n')}\`\`\``;
 
       try {
         if (message) {
-          message = await event.channel.messages.fetch(message.id);
           await message.edit(messageBody);
         } else {
           throw new Error('noMessage');
         }
       } catch (e) {
-        message = await event.channel.send(messageBody);
+        if (message && e.code !== 10008) {
+          console.error('Erro ao atualizar corrida:', e.message);
+        } else {
+          message = await event.channel.send(messageBody);
+        }
       }
 
-      const winner = race.findIndex(it => it === this.trackSize - 1);
-      if (winner === -1) {
-        setTimeout(() => {
-          race[this.getNextHorseToWalk(usersIn.length)]++;
-          run();
-        }, 500);
+      const finished = race.filter(it => it >= this.trackSize - 1);
+      if (finished.length === 0) {
+        setTimeout(run, this.tickInterval);
       } else {
+        const best = Math.max(...finished);
+        const candidates = race.reduce((acc, it, index) => (it === best ? [...acc, index] : acc), []);
+        const winner = candidates[Math.floor(Math.random() * candidates.length)];
+
         const prize = betValue * usersIn.length;
         await this.client.bankService.credit(usersIn[winner], prize, this.i18n.bankLabelPrize);
         await event.channel.send(

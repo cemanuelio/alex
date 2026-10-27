@@ -1,4 +1,4 @@
-const { MessageActionRow, MessageButton } = require('discord.js');
+const { ActionRowBuilder, ButtonBuilder, ButtonStyle } = require('discord.js');
 const axios = require('axios');
 
 class AudiosCommand {
@@ -52,14 +52,14 @@ class AudiosCommand {
 
     for (let i = 0; i < Math.ceil(commands.length / 5); i++) {
       const arr = Array.from(Array(5), (_, k) => commands[k + (5 * i)]);
-      const row = new MessageActionRow();
+      const row = new ActionRowBuilder();
 
       arr.filter(it => !!it).forEach(it => {
         row.addComponents(
-          new MessageButton()
+          new ButtonBuilder()
             .setCustomId(`audiosCommand-${it.command}`)
             .setLabel(it.command)
-            .setStyle('PRIMARY')
+            .setStyle(ButtonStyle.Primary)
         );
       });
 

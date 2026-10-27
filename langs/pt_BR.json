@@ -3,6 +3,72 @@
     "initial": "Valor inicial - Cadastro",
     "reward": "Recompensa"
   },
+  "blackjack": {
+    "command": "blackjack",
+    "invalid": "Valor de aposta inválido.",
+    "noBalance": "Saldo insuficiente para essa aposta.",
+    "bankLabelBet": "Aposta Blackjack",
+    "bankLabelPrize": "Prêmio Blackjack",
+    "title": "🂡 Blackjack",
+    "player": "Sua mão: {{H}} (**{{V}}**)",
+    "dealer": "Mão do dealer: {{H}}",
+    "hit": "Pedir carta",
+    "stand": "Parar",
+    "blackjackWin": "Blackjack! Você ganhou P$ {{V}}!",
+    "win": "Você venceu e ganhou P$ {{V}}!",
+    "push": "Empate! Sua aposta foi devolvida.",
+    "lose": "Você perdeu P$ {{V}}.",
+    "notYourGame": "Essa partida não é sua!",
+    "gameOver": "Essa partida já terminou ou expirou."
+  },
+  "velha": {
+    "command": "velha",
+    "invalid": "Comando Inválido",
+    "noBalance": "<@!{{USER}}> saldo insuficiente.",
+    "bankLabelBet": "Aposta Jogo da Velha",
+    "bankLabelPrize": "Prêmio Jogo da Velha",
+    "message": "@here Jogo da velha criado por ``{{U}}``! Reaja com ✅ para aceitar. Aposta: P$ {{V}}. Expira em {{T}} segundos.",
+    "cancel": "Partida cancelada: ninguém aceitou o desafio.",
+    "title": "❌⭕ {{X}} (X) vs {{O}} (O)",
+    "turn": "Vez de {{U}} ({{S}})",
+    "win": "🏆 {{U}} venceu e ganhou P$ {{V}}!",
+    "draw": "Empate! Apostas devolvidas.",
+    "notYourTurn": "Não é a sua vez!",
+    "cellTaken": "Essa casa já está ocupada!",
+    "gameOver": "Essa partida já terminou ou expirou."
+  },
+  "forca": {
+    "command": "forca",
+    "start": "🎪 Jogo da Forca iniciado! Adivinhem a palavra uma letra por vez com ``!forca <letra>``.",
+    "noGame": "Não há jogo de forca em andamento. Digite ``!forca`` para iniciar um novo.",
+    "invalidLetter": "Digite apenas uma letra válida (a-z).",
+    "alreadyGuessed": "Essa letra já foi tentada!",
+    "wrongLetters": "Letras erradas: {{L}}",
+    "win": "🎉 Parabéns! A palavra era **{{W}}**. Você ganhou P$ {{V}}!",
+    "lose": "💀 Game over! A palavra era **{{W}}**.",
+    "bankLabel": "Prêmio Forca"
+  },
+  "dado": {
+    "command": "dado",
+    "invalid": "Comando Inválido",
+    "noBalance": "<@!{{USER}}> saldo insuficiente.",
+    "bankLabelBet": "Aposta Dado",
+    "bankLabelPrize": "Prêmio Dado",
+    "message": "@here Duelo de dados criado por ``{{U}}``! Reaja com ✅ para aceitar. Aposta: P$ {{V}}. Expira em {{T}} segundos.",
+    "cancel": "Duelo cancelado: ninguém aceitou o desafio.",
+    "rolling": "🎲 Rolando os dados...",
+    "tie": "<@!{{A}}> rolou {{RA}} e <@!{{B}}> rolou {{RB}}. Empate! Apostas devolvidas.",
+    "result": "<@!{{A}}> rolou {{RA}} e <@!{{B}}> rolou {{RB}}. Vencedor: <@!{{WINNER}}> - Prêmio: P$ {{PRIZE}}"
+  },
+  "slots": {
+    "command": "slots",
+    "invalid": "Valor de aposta inválido.",
+    "noBalance": "Saldo insuficiente para essa aposta.",
+    "bankLabelBet": "Aposta Slots",
+    "bankLabelPrize": "Prêmio Slots",
+    "win": "🎉 Você ganhou P$ {{V}}!",
+    "lose": "Você perdeu P$ {{V}}."
+  },
   "aToa": {
     "command": "aToa",
     "loading": "Consultando os deuses do tédio...",
@@ -56,12 +122,25 @@
   },
   "palavra": {
     "command": "palavra",
-    "message": "Palavra do dia! Acerte e ganhe P$ 200.",
+    "message": "Palavra do dia! Acerte e ganhe até P$ 200 (use ``!dica`` para revelar uma letra, mas isso reduz o prêmio).",
     "nextTry": "Intervalo entre tentativas do mesmo usuário de 2 minutos! Próxima tentativa às {{H}}.",
     "wrong": "Palavra incorreta",
     "bankLabel": "Acerto - Palavra do Dia",
-    "right": "Correto! Você acertou e ganhou P$ 200. Parabéns!",
-    "alreadyAnswered": "Desafio do dia finalizado! Respondido corretamente por ``{{U}}``."
+    "right": "Correto! Você acertou e ganhou P$ {{V}}. Parabéns!",
+    "alreadyAnswered": "Desafio do dia finalizado! Respondido corretamente por ``{{U}}``.",
+    "unavailable": "Não consegui buscar a palavra do dia agora, tente novamente em alguns instantes."
+  },
+  "dica": {
+    "command": "dica",
+    "unavailable": "Não há palavra do dia disponível agora, tente novamente em alguns instantes.",
+    "alreadyAnswered": "O desafio de hoje já foi respondido, não há mais dicas disponíveis.",
+    "noMoreHints": "Você já usou todas as dicas disponíveis para esta palavra.",
+    "hint": "Dica revelada! Se acertar agora, o prêmio será de P$ {{V}}.",
+    "dmBlocked": "Não consegui te enviar a dica por DM. Habilite mensagens diretas de membros do servidor e tente novamente."
+  },
+  "rankingPalavra": {
+    "command": "rankingpalavra",
+    "empty": "Ainda não há nenhum acerto registrado na Palavra do Dia."
   },
   "proposta": {
     "command": "proposta",

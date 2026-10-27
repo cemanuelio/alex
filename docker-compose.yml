@@ -1,0 +1,9 @@
+services:
+  alex:
+    build: .
+    container_name: alex
+    restart: unless-stopped
+    env_file:
+      - .env
+    volumes:
+      - ./alex.db:/app/alex.db

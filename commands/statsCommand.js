@@ -1,4 +1,4 @@
-const { MessageEmbed } = require('discord.js');
+const { EmbedBuilder } = require('discord.js');
 const moment = require('moment');
 
 class StatsCommand {
@@ -69,7 +69,7 @@ class StatsCommand {
       it => `${this.dateToString(it.createdAt)} - !${it.command} - ${userData.find(u => u.id.toString() === it.user).username}`
     ).join('\n');
 
-    const message = new MessageEmbed()
+    const message = new EmbedBuilder()
       .setColor('#0099ff')
       .setTitle(this.i18n.title)
       .addFields(
