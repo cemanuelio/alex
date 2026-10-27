@@ -8,4 +8,4 @@ services:
     security_opt:
       - label:disable
     volumes:
-      - ./alex.db:/app/alex.db
+      - ./data:/app/data

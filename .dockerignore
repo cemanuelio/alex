@@ -3,7 +3,7 @@ npm-debug.log
 .git
 .gitignore
 .env
-alex.db
+data/
 Dockerfile
 docker-compose.yml
 .dockerignore
